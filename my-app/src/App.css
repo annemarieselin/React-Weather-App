@@ -16,3 +16,11 @@
 .search-box-input {
   margin-right: 10px;
 }
+
+.sources {
+  font-size: 14px;
+}
+
+.sources a {
+  color: azure;
+}
