@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Enter city...</h3>
+        <h3>🔎 Enter city...</h3>
         <SearchInput />
         <footer class="sources">
           This site was coded by Anne-Marie Selin at{" "}
