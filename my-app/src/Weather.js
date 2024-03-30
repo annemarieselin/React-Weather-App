@@ -34,7 +34,7 @@ export default function SearchInput() {
   function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
-    let apiKey = process.env.REACT_APP_OPENWEATHERMAP_API_KEY;
+    let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
     let units = "metric";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
 
@@ -92,7 +92,7 @@ export default function SearchInput() {
                 <strong>{weatherData.description}</strong>
                 <br />
                 <br />
-                <strong>{new Date().toLocaleTimeString()}</strong>
+                Time: <strong>{new Date().toLocaleTimeString()} O'Clock</strong>
                 <br />
                 Humidity: <strong>{weatherData.humidity}%</strong>
                 <br />
@@ -111,18 +111,9 @@ export default function SearchInput() {
             </div>
           ) : null}
         </div>
-        <div className="weather-forecast">
-          {forecastData.map((item, index) => (
-            <div key={index}>
-              <p>{new Date(item.dt * 1000).toLocaleDateString()}</p>
-              <p>Temperature: {Math.round(item.main.temp)}°C</p>
-              <p>Description: {item.weather[0].description}</p>
-            </div>
-          ))}
-        </div>
       </main>
       <footer className="sources">
-        This site was coded by Anne-Marie Selin at{" "}
+        This site was coded using JSX and React by Anne-Marie Selin at{" "}
         <a href="https://selinmarketing.com/" target="_blank" rel="noreferrer">
           Selin Marketing
         </a>{" "}
@@ -140,7 +131,7 @@ export default function SearchInput() {
           target="_blank"
           rel="noreferrer"
         >
-          Netlify
+          Netlify.
         </a>
       </footer>
     </div>
