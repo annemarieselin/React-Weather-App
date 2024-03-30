@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Weather.css"; // Assuming you have a Weather.css file for styling
+import "./Weather.css";
 import FormattedDate from "./FormattedDate";
 
 export default function SearchInput() {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
-  const [forecastData, setForecastData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -20,10 +19,6 @@ export default function SearchInput() {
       icon: response.data.weather[0].icon,
     });
     setError(null);
-  }
-
-  function displayForecast(response) {
-    setForecastData(response.data.list);
   }
 
   function handleError(error) {
@@ -48,16 +43,6 @@ export default function SearchInput() {
       .catch((error) => {
         console.error("Error fetching weather data:", error);
         handleError(error);
-      });
-
-    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
-    axios
-      .get(forecastUrl)
-      .then((response) => {
-        displayForecast(response);
-      })
-      .catch((error) => {
-        console.error("Error fetching forecast data:", error);
       });
   }
 
