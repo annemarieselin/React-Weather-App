@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Weather.css";
+import "./Weather.css"; // Assuming you have a Weather.css file for styling
+import FormattedDate from "./FormattedDate";
 
 export default function SearchInput() {
   const [city, setCity] = useState("");
@@ -80,36 +81,42 @@ export default function SearchInput() {
         </form>
       </header>
       <main>
-        <div className="weather-app-data">
-          {loading ? (
-            <h4>Loading temperature for {city}...</h4>
-          ) : error ? (
-            <h4>{error}</h4>
-          ) : weatherData ? (
-            <div>
-              <h1 className="current-city">{weatherData.city}</h1>
-              <p className="current-details">
-                <strong>{weatherData.description}</strong>
-                <br />
-                <br />
-                Time: <strong>{new Date().toLocaleTimeString()} O'Clock</strong>
-                <br />
-                Humidity: <strong>{weatherData.humidity}%</strong>
-                <br />
-                Wind: <strong>{weatherData.wind} km/h</strong>
-              </p>
-              <div className="current-temperature">
-                <img
-                  src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
-                  alt={weatherData.description}
-                />
-                <span className="current-temperature-value">
-                  {Math.round(weatherData.temperature)}
-                </span>
-                <span className="current-temperature-unit">°C</span>
+        <div className="row">
+          <div className="column">
+            {loading ? (
+              <h4>Loading temperature for {city}...</h4>
+            ) : error ? (
+              <h4>{error}</h4>
+            ) : weatherData ? (
+              <div>
+                <h1 className="current-city">{weatherData.city}</h1>
+                <div className="column">
+                  {weatherData ? (
+                    <div className="current-temperature">
+                      <img
+                        src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                        alt={weatherData.description}
+                      />
+                      <span className="current-temperature-value">
+                        {Math.round(weatherData.temperature)}
+                      </span>
+                      <span className="current-temperature-unit">°C</span>
+                    </div>
+                  ) : null}
+                  <strong>{weatherData.description}</strong>
+                </div>
+
+                <p className="current-details">
+                  <br />
+                  <br />
+                  <FormattedDate />
+                  Humidity: <strong>{weatherData.humidity}%</strong>
+                  <br />
+                  Wind: <strong>{weatherData.wind} km/h</strong>
+                </p>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </main>
       <footer className="sources">

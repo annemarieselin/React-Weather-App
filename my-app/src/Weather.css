@@ -55,6 +55,7 @@ h1 {
   color: #bfcdd6;
   font-size: 50px;
   font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-bottom: -5px;
 }
 
@@ -69,6 +70,7 @@ h1 {
 
 .current-temperature {
   display: flex;
+  align-items: right;
 }
 
 .current-temperature-image {
@@ -91,44 +93,11 @@ h1 {
   color: #bfcdd6;
 }
 
-.weather-forecast {
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.weather-forecast-date {
-  font-size: 16px;
-  font-weight: bold;
-  color: #bfcdd6;
-  align-items: center;
-}
-
 .weather-forecast-temperatures {
   justify-content: center;
   align-items: center;
 }
 
-.weather-forecast-icon {
-  width: 60px;
-  height: 60px;
-  align-items: center;
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-.weather-forecast-temperatures {
-  font-size: 16px;
-  font-weight: bold;
-  display: block;
-  margin: 0 auto;
-  height: 100%;
-}
-
-.weather-forecast-temperature-max {
-  color: #e9e8e5;
-}
-
-.weather-forecast-temperature-min {
-  color: #d0c6c0;
+footer {
+  padding-top: 20px;
 }
