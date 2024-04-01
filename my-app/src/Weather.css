@@ -6,6 +6,11 @@ body {
   background-size: cover;
 }
 
+a {
+  color: #486581;
+  text-decoration: none;
+}
+
 .weather-app {
   background: #3c4656;
   border-radius: 16px;
