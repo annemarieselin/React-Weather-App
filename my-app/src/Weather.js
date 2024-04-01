@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import WeatherTemperature from "./WeatherTemperature";
 import FormattedDate from "./FormattedDate";
 
 export default function SearchInput(props) {
@@ -77,7 +78,7 @@ export default function SearchInput(props) {
                   <span className="current-temperature-value">
                     {Math.round(weatherData.temperature)}
                   </span>
-                  <span className="current-temperature-unit">°C</span>
+                  <WeatherTemperature celsius={weatherData.temperature} />
                 </div>
                 <strong>{weatherData.description}</strong>
               </div>
@@ -126,7 +127,51 @@ export default function SearchInput(props) {
       return <h4>{error}</h4>;
     }
   } else {
-    searchCity();
-    return <h4>Loading temperature for {city}...</h4>;
+    return (
+      <div className="weather-app">
+        <header>
+          <form className="search-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="🔎 Enter a city.."
+              required
+              name="city"
+              className="search-input"
+              onChange={updateCity}
+            />
+            <input type="submit" value="Search" className="search-button" />
+          </form>
+        </header>
+        <main>
+          <h4>Loading temperature for {city}...</h4>
+        </main>
+        <footer className="sources">
+          This site was coded using JSX and React by Anne-Marie Selin at{" "}
+          <a
+            href="https://selinmarketing.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Selin Marketing
+          </a>{" "}
+          and is open-source on{" "}
+          <a
+            href="https://github.com/annemarieselin/react-weather-app"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>{" "}
+          and hosted on{" "}
+          <a
+            href="https://react-weather-app-annemarieselin.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Netlify.
+          </a>
+        </footer>
+      </div>
+    );
   }
 }
