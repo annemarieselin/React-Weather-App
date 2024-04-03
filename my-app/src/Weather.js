@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
+import WeatherForecast from "./WeatherForecast";
 import WeatherTemperature from "./WeatherTemperature";
-
 import FormattedDate from "./FormattedDate";
 
 export default function SearchInput(props) {
@@ -95,6 +95,7 @@ export default function SearchInput(props) {
                 </p>
               </div>
             </div>
+            <WeatherForecast weatherData={weatherData} />
           </main>
           <footer className="sources">
             This site was coded using JSX and React by Anne-Marie Selin at{" "}
