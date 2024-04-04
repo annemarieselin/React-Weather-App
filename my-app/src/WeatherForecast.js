@@ -1,47 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./WeatherForecast.css";
-import WeatherIcon from "./WeatherIcon";
-import Axios from "axios";
+import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast({ weatherData }) {
-  let { icon } = weatherData ? weatherData : { icon: "" };
-
-  let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
-  let longitude =
-    weatherData && weatherData.coordinates ? weatherData.coordinates.lon : 0;
-  let latitude =
-    weatherData && weatherData.coordinates ? weatherData.coordinates.lat : 0;
-  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await Axios.get(apiURL);
-        handleResponse(response);
-      } catch (error) {
-        console.error("Error fetching weather data:", error);
-      }
-    };
-
-    fetchData();
-  }, [apiURL]);
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
 
   function handleResponse(response) {
-    console.log(response.data);
+    setForecast(response.data.daily);
+    setLoaded(true);
+  }
+
+  if (!loaded) {
+    let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
+    let longitude =
+      weatherData && weatherData.coordinates ? weatherData.coordinates.lon : 0;
+    let latitude =
+      weatherData && weatherData.coordinates ? weatherData.coordinates.lat : 0;
+    let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+    axios.get(apiURL).then(handleResponse);
+
+    return null;
   }
 
   return (
     <div className="WeatherForecast">
       <div className="row">
         <div className="col">
-          <div className="WeatherForecast-day">Thu</div>
-          <div className="WeatherForecast-icon">
-            <WeatherIcon code={icon} size={36} />
-          </div>
-          <div className="WeatherForecast-temperatures">
-            <span className="WeatherForecast-temperature-max">19°</span>
-            <span className="WeatherForecast-temperature-min">10°</span>
-          </div>
+          <WeatherForecastDay data={forecast[0]} />
         </div>
       </div>
     </div>
