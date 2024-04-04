@@ -1,10 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import "./WeatherForecast.css";
 import WeatherIcon from "./WeatherIcon";
+import Axios from "axios";
 
 export default function WeatherForecast({ weatherData }) {
-  const { icon } = weatherData;
+  let { icon } = weatherData ? weatherData : { icon: "" };
+
+  let apiKey = "cb286bad3607984b41ed10c8de5cf00e";
+  let longitude =
+    weatherData && weatherData.coordinates ? weatherData.coordinates.lon : 0;
+  let latitude =
+    weatherData && weatherData.coordinates ? weatherData.coordinates.lat : 0;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.get(apiURL);
+        handleResponse(response);
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+      }
+    };
+
+    fetchData();
+  }, [apiURL]);
+
+  function handleResponse(response) {
+    console.log(response.data);
+  }
 
   return (
     <div className="WeatherForecast">
@@ -23,9 +47,3 @@ export default function WeatherForecast({ weatherData }) {
     </div>
   );
 }
-
-WeatherForecast.propTypes = {
-  weatherData: PropTypes.shape({
-    icon: PropTypes.string.isRequired,
-  }).isRequired,
-};

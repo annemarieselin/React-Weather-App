@@ -13,6 +13,7 @@ export default function SearchInput(props) {
   function displayWeather(response) {
     setWeatherData({
       ready: true,
+      coordinates: response.data.coord,
       city: response.data.name,
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
@@ -95,7 +96,7 @@ export default function SearchInput(props) {
                 </p>
               </div>
             </div>
-            <WeatherForecast weatherData={weatherData} />
+            <WeatherForecast coordinates={weatherData.coordinates} />
           </main>
           <footer className="sources">
             This site was coded using JSX and React by Anne-Marie Selin at{" "}
