@@ -96,7 +96,7 @@ export default function SearchInput(props) {
                 </p>
               </div>
             </div>
-            <WeatherForecast coordinates={weatherData.coordinates} />
+            <WeatherForecast coordinates={weatherData} />
           </main>
           <footer className="sources">
             This site was coded using JSX and React by Anne-Marie Selin at{" "}
