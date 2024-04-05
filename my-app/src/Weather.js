@@ -90,6 +90,7 @@ export default function SearchInput(props) {
                   <br />
                   <br />
                   <FormattedDate />
+                  <br />
                   Humidity: <strong>{weatherData.humidity}%</strong>
                   <br />
                   Wind: <strong>{weatherData.wind} km/h</strong>

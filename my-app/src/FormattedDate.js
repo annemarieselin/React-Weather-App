@@ -27,7 +27,10 @@ export default function FormattedDate(props) {
 
   return (
     <div>
-      {day}: {hours}:{minutes} O'Clock
+      <strong>
+        {" "}
+        {day}: {hours}:{minutes} O'Clock
+      </strong>
     </div>
   );
 }
