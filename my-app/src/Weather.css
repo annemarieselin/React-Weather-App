@@ -5,7 +5,6 @@ body {
 
 a {
   color: #486581;
-  text-decoration: none;
 }
 
 .weather-app {
@@ -102,6 +101,10 @@ h1 {
 
 footer {
   padding-top: 20px;
+}
+
+footer a {
+  color: #486581;
 }
 
 .row {

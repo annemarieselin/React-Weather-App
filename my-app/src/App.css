@@ -16,3 +16,7 @@
 .sources a {
   color: azure;
 }
+
+.sources a:hover {
+  color: #486581;
+}
