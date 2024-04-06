@@ -77,14 +77,10 @@ export default function SearchInput(props) {
                     src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                     alt={weatherData.description}
                   />
-                  <span className="current-temperature-value">
-                    {Math.round(weatherData.temperature)}
-                  </span>
                   <WeatherTemperature celsius={weatherData.temperature} />
                 </div>
                 <strong>{weatherData.description}</strong>
               </div>
-
               <div className="column">
                 <p className="current-details">
                   <br />
